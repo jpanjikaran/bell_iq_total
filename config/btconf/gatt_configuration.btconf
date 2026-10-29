@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Custom BLE GATT-->
+<gatt gatt_caching="true" generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+  
+  <!--Generic Access-->
+  <service advertise="false" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+    
+    <!--Device Name-->
+    <characteristic const="false" id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <informativeText/>
+      <value length="15" type="utf-8" variable_length="false">Mouse_Trap_Gen2</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Appearance-->
+    <characteristic const="true" name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+      <value length="2" type="hex" variable_length="false">0000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Device Information-->
+  <service advertise="false" id="device_information" name="Device Information" requirement="mandatory" sourceId="org.bluetooth.service.device_information" type="primary" uuid="180A">
+    <informativeText>Abstract:  The Device Information Service exposes manufacturer and/or vendor information about a device.  Summary:  This service exposes manufacturer information about a device. The Device Information Service is instantiated as a Primary Service. Only one instance of the Device Information Service is exposed on a device.  </informativeText>
+    
+    <!--Manufacturer Name String-->
+    <characteristic const="true" id="manufacturer_name_string" name="Manufacturer Name String" sourceId="org.bluetooth.characteristic.manufacturer_name_string" uuid="2A29">
+      <informativeText>Abstract:  The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device.  </informativeText>
+      <value length="22" type="utf-8" variable_length="false">SmartWave Technologies</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--System ID-->
+    <characteristic const="false" id="system_id" name="System ID" sourceId="org.bluetooth.characteristic.system_id" uuid="2A23">
+      <informativeText>Abstract:  The SYSTEM ID characteristic consists of a structure with two fields. The first field are the LSOs and the second field contains the MSOs.       This is a 64-bit structure which consists of a 40-bit manufacturer-defined identifier concatenated with a 24 bit unique Organizationally Unique Identifier (OUI). The OUI is issued by the IEEE Registration Authority (http://standards.ieee.org/regauth/index.html) and is required to be used in accordance with IEEE Standard 802-2001.6 while the least significant 40 bits are manufacturer defined.       If System ID generated based on a Bluetooth Device Address, it is required to be done as follows. System ID and the Bluetooth Device Address have a very similar structure: a Bluetooth Device Address is 48 bits in length and consists of a 24 bit Company Assigned Identifier (manufacturer defined identifier) concatenated with a 24 bit Company Identifier (OUI). In order to encapsulate a Bluetooth Device Address as System ID, the Company Identifier is concatenated with 0xFFFE followed by the Company Assigned Identifier of the Bluetooth Address. For more guidelines related to EUI-64, refer to http://standards.ieee.org/develop/regauth/tut/eui64.pdf.  Examples:  If the system ID is based of a Bluetooth Device Address with a Company Identifier (OUI) is 0x123456 and the Company Assigned Identifier is 0x9ABCDE, then the System Identifier is required to be 0x123456FFFE9ABCDE.  </informativeText>
+      <value length="8" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Sensor Info-->
+  <service advertise="false" id="" name="Sensor Info" requirement="mandatory" sourceId="" type="primary" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f80">
+    <informativeText/>
+    
+    <!--Manufacturing Date-->
+    <characteristic const="false" id="manufacture_date" name="Manufacturing Date" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f82">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Hardware Version-->
+    <characteristic const="false" id="hardware_version" name="Hardware Version" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f83">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Firmware Version-->
+    <characteristic const="false" id="firmware_version" name="Firmware Version" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f84">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Device Type-->
+    <characteristic const="false" id="device_type" name="Device Type" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f85">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Device type write-->
+    <characteristic const="false" id="device_type_write" name="Device type write" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f86">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--LoRa Settings-->
+    <characteristic const="false" id="lora_settings" name="LoRa Settings" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f87">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Sensor Settings-->
+  <service advertise="false" id="sensor_settings" name="Sensor Settings" requirement="mandatory" sourceId="custom.type" type="primary" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f90">
+    <informativeText/>
+    
+    <!--Advertising Period-->
+    <characteristic const="false" id="advertising_period" name="Advertising Period" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f91">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">10</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Test Mode-->
+    <characteristic const="false" id="test_mode" name="Test Mode" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f92">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Detection Threshold-->
+    <characteristic const="false" id="detection_threshold" name="Detection Threshold" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21f93">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Sensor Statistics-->
+  <service advertise="false" id="sensor_statistics" name="Sensor Statistics" requirement="mandatory" sourceId="custom.type" type="primary" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fa0">
+    <informativeText/>
+    
+    <!--Max Temp-->
+    <characteristic const="false" id="max_temp" name="Max Temp" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fA4">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Min Temp-->
+    <characteristic const="false" id="min_temp" name="Min Temp" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fA5">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Events-->
+  <service advertise="false" id="events_reset" name="Events" requirement="mandatory" sourceId="custom.type" type="primary" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB0">
+    <informativeText/>
+    
+    <!--Since Reset-->
+    <characteristic const="false" id="since_reset" name="Since Reset" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB1">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Transfer Next-->
+    <characteristic const="false" id="transfer_next" name="Transfer Next" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB2">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Signature-->
+    <characteristic const="false" id="signature" name="Signature" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB5">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Signature Index-->
+    <characteristic const="false" id="signature_index" name="Signature Index" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB6">
+      <informativeText/>
+      <value length="2" type="hex" variable_length="false">0000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Signature Clear-->
+    <characteristic const="false" id="signature_clear" name="Signature Clear" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB7">
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--sigIndication-->
+    <characteristic const="false" id="sig_Indication" name="sigIndication" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fB8">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <indicate authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Security-->
+  <service advertise="false" id="security" name="Security" requirement="mandatory" sourceId="custom.type" type="primary" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fc0">
+    <informativeText/>
+    
+    <!--Authentication Status-->
+    <characteristic const="false" id="authentication_status" name="Authentication Status" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fc4">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Site Key-->
+    <characteristic const="false" id="site_key" name="Site Key" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fc3">
+      <informativeText/>
+      <value length="0" type="hex" variable_length="false">00000000000000000000000000000000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Session Keys-->
+    <characteristic const="false" id="session_keys" name="Session Keys" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fc1">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Radio Static-->
+    <characteristic const="false" id="random_key" name="Radio Static" sourceId="custom.type" uuid="aa5b69db-821f-448d-aa3e-7d9e53f21fc2">
+      <informativeText/>
+      <value length="0" type="user" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Current Time Service-->
+  <service advertise="false" id="current_time" name="Current Time Service" requirement="mandatory" sourceId="org.bluetooth.service.current_time" type="primary" uuid="1805">
+    <informativeText>Abstract:  This service defines how the current time can be exposed using the Generic Attribute Profile (GATT).  Summary:  Many Bluetooth devices have the ability to store and show time information. This service defines how a Bluetooth device can expose time information to other Bluetooth devices.  </informativeText>
+    
+    <!--Current Time-->
+    <characteristic const="false" id="current_unix_time" name="Current Time" sourceId="org.bluetooth.characteristic.current_time" uuid="2A2B">
+      <informativeText/>
+      <value length="4" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+      
+      <!--Client Characteristic Configuration-->
+      <descriptor const="false" discoverable="true" id="client_characteristic_configuration" name="Client Characteristic Configuration" sourceId="org.bluetooth.descriptor.gatt.client_characteristic_configuration" uuid="2902">
+        <properties>
+          <read authenticated="false" bonded="false" encrypted="false"/>
+          <write authenticated="false" bonded="false" encrypted="false"/>
+        </properties>
+        <value length="2" type="hex" variable_length="false"/>
+        <informativeText>Abstract:  The Client Characteristic Configuration descriptor defines how the characteristic may be configured by a specific client.  Summary:  This descriptor shall be persistent across connections for bonded devices.         The Client Characteristic Configuration descriptor is unique for each client. A client may read and write this descriptor to determine and set the configuration for that client.         Authentication and authorization may be required by the server to write this descriptor.         The default value for the Client Characteristic Configuration descriptor is 0x00. Upon connection of non-binded clients, this descriptor is set to the default value.  </informativeText>
+      </descriptor>
+    </characteristic>
+    
+    <!--Local Time Information-->
+    <characteristic const="false" id="local_time_information" name="Local Time Information" sourceId="org.bluetooth.characteristic.local_time_information" uuid="2A0F">
+      <informativeText/>
+      <value length="2" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Reference Time Information-->
+    <characteristic const="false" id="reference_time_information" name="Reference Time Information" sourceId="org.bluetooth.characteristic.reference_time_information" uuid="2A14">
+      <informativeText/>
+      <value length="4" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+</gatt>
